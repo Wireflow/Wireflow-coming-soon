@@ -35,6 +35,10 @@ app.get("/*", function (req, res) {
   );
 });
 
+var distDir = __dirname + "/dist/";
+
+app.use(express.static(distDir));
+
 app.post("/", (req, res) => {
   const { email } = req.body;
   const subscriber = new Subscriber({ email });
