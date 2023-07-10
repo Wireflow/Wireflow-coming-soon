@@ -1,4 +1,7 @@
 import "./ComingSoon.css";
+import { useState } from "react";
+import axios from "axios";
+
 import lettermark from "../assets/Lettermark.png";
 import logo from "../assets/logo-icon.png";
 import background from "../assets/background.png";
@@ -11,8 +14,25 @@ import {
 } from "react-icons/bs";
 
 const ComingSoon = () => {
+  const [email, setEmail] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState(null); // New state for error handling
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    axios
+      .post("http://localhost:3000/", { email })
+      .then((response) => {
+        console.log(response.data);
+        setIsSubmitted(true);
+      })
+      .catch((error) => {
+        console.error(error);
+        setError("An error occurred. Please try again."); // Set error message
+      });
+
+    setEmail("");
   };
 
   return (
@@ -35,10 +55,22 @@ const ComingSoon = () => {
           </p>
         </div>
         <div className="newletter">
-          <form onSubmit={handleSubmit}>
-            <input placeholder="example@email.com" />
-            <button type="submit">SUBSCRIBE</button>
-          </form>
+          {isSubmitted ? (
+            <p className="success-message">Thank you for subscribing!</p>
+          ) : (
+            <>
+              {error && <p className="error-message">Something went wrong!</p>}
+              <form onSubmit={handleSubmit}>
+                <input
+                  placeholder="example@email.com"
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
+                  type="email"
+                />
+                <button type="submit">SUBSCRIBE</button>
+              </form>
+            </>
+          )}
         </div>
       </body>
       <footer>

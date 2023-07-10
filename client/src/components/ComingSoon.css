@@ -87,7 +87,8 @@ body {
   width: min(21rem, 80%);
 }
 
-form > * {
+form > input,
+button {
   width: 100%;
 }
 
@@ -113,6 +114,10 @@ form > button {
   border-radius: 0.5rem;
   background: #fff;
   font-weight: 900;
+  cursor: pointer;
+}
+form > button:hover {
+  background: #b7b6b6;
 }
 
 .socials {
@@ -133,7 +138,34 @@ footer {
   bottom: 3rem;
 }
 
+.newletter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 header {
   position: absolute;
   top: 3rem;
+}
+.error-message {
+  color: rgb(255, 95, 95);
+  font-weight: 700;
+  text-align: left;
+}
+
+.success-message {
+  font-weight: 700;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  transition: all 0.3s;
+  animation: scaleUp 0.5s forwards;
+}
+
+@keyframes scaleUp {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
 }
