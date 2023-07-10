@@ -3,14 +3,7 @@ import axios from "axios";
 
 import lettermark from "../assets/Lettermark.png";
 import logo from "../assets/logo-icon.png";
-import background from "../assets/background.png";
-import {
-  BsLinkedin,
-  BsTwitter,
-  BsGithub,
-  BsInstagram,
-  BsGit,
-} from "react-icons/bs";
+import { BsLinkedin, BsTwitter, BsGithub, BsInstagram } from "react-icons/bs";
 
 const ComingSoon = () => {
   const [email, setEmail] = useState("");
