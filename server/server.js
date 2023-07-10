@@ -10,7 +10,9 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
-const url = process.env.MONGODB_URI;
+const url =
+  process.env.MONGODB_URI ||
+  "mongodb+srv://nabdulrub16:30QmOcbeFdd3hOnF@cluster0.nmm4knq.mongodb.net/?retryWrites=true&w=majority&ssl=true";
 
 mongoose
   .connect(url, {

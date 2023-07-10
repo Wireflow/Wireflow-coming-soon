@@ -11,3 +11,175 @@
   width: 100vw;
   height: 100vh;
 }
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;500;600;700;800;900&display=swap");
+
+.container {
+  position: relative;
+  font-family: "Red Hat Display", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  gap: 4rem;
+  background: url("../assets/background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  text-align: center;
+}
+
+.logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: fit-content;
+  width: min(100%, 285px);
+}
+
+.logos:nth-child(1) {
+  min-width: 100px;
+}
+
+.logos:nth-child(2) {
+  min-width: 50px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.titles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.titles > p {
+  background: linear-gradient(to right, #fff, #2080f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 100;
+  font-size: clamp(1rem, 4vw, 1.5rem);
+  width: fit-content;
+}
+
+.titles > h1 {
+  font-weight: 800;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+}
+
+.description {
+  display: grid;
+  place-items: center;
+}
+
+.description > p {
+  font-weight: 200;
+  width: calc(100% - 20vw);
+  font-size: clamp(1rem, 3vw, 1.2rem);
+}
+
+.newletter {
+  display: grid;
+  place-items: center;
+}
+
+.newletter > form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  gap: 1.1rem;
+  width: min(21rem, 80%);
+}
+
+form > input,
+button {
+  width: 100%;
+}
+
+form > input {
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  align-items: center;
+  color: #fff;
+  outline: none;
+  font-size: 1rem;
+}
+
+form > button {
+  height: 4rem;
+  padding: 0rem 1.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  background: #fff;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+form > button:hover {
+  background: #b7b6b6;
+}
+
+.socials {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.socials-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+footer {
+  position: absolute;
+  bottom: 3rem;
+}
+
+.newletter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+header {
+  position: absolute;
+  top: 3rem;
+}
+.error-message {
+  color: rgb(255, 95, 95);
+  font-weight: 700;
+  text-align: left;
+}
+
+.success-message {
+  font-weight: 700;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  transition: all 0.3s;
+  animation: scaleUp 0.5s forwards;
+}
+
+@keyframes scaleUp {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}
