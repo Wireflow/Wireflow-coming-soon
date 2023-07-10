@@ -19,6 +19,17 @@ mongoose
   .then(() => console.log("Connect to DB"))
   .catch((err) => console.error("Error connecting to DB", err));
 
+app.get("/*", function (req, res) {
+  res.sendFile(
+    path.join(__dirname, "../client/build/index.html"),
+    function (err) {
+      if (err) {
+        res.status(500).send(err);
+      }
+    }
+  );
+});
+
 app.use(express.json());
 
 app.post("/", (req, res) => {
@@ -35,6 +46,8 @@ app.post("/", (req, res) => {
     });
 });
 
-app.listen(3000, () => {
-  console.log("Server listening on port 3000");
+const PORT = process.env.PORT || 5001;
+
+app.listen(PORT, () => {
+  console.log("Server listening on port " + PORT);
 });
