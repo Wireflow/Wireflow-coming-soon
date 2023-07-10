@@ -1,5 +1,4 @@
-import "./ComingSoon.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 import lettermark from "../assets/Lettermark.png";
@@ -16,20 +15,21 @@ import {
 const ComingSoon = () => {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [error, setError] = useState(null); // New state for error handling
+  const [error, setError] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:3000/", { email })
+      .post("/", { email })
       .then((response) => {
         console.log(response.data);
         setIsSubmitted(true);
+        setError(null);
       })
       .catch((error) => {
         console.error(error);
-        setError("An error occurred. Please try again."); // Set error message
+        setError("An error occurred. Please try again.");
       });
 
     setEmail("");
@@ -59,7 +59,7 @@ const ComingSoon = () => {
             <p className="success-message">Thank you for subscribing!</p>
           ) : (
             <>
-              {error && <p className="error-message">Something went wrong!</p>}
+              {error && <p className="error-message">{error}</p>}
               <form onSubmit={handleSubmit}>
                 <input
                   placeholder="example@email.com"

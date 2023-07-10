@@ -1,25 +1,28 @@
-const mongoose = require("mongoose");
+const path = require("path");
 const express = require("express");
-const Subscriber = require("./models/Subscriber");
-const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 const cors = require("cors");
+const bodyParser = require("body-parser");
+const Subscriber = require("./models/Subscriber");
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 
-const url =
-  "mongodb+srv://nabdulrub16:30QmOcbeFdd3hOnF@cluster0.nmm4knq.mongodb.net/?retryWrites=true&w=majority&ssl=true";
+const url = process.env.MONGODB_URI;
 
 mongoose
   .connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("Connect to DB"))
+  .then(() => console.log("Connected to DB"))
   .catch((err) => console.error("Error connecting to DB", err));
 
-app.get("/*", function (req, res) {
+app.use(express.static(path.join(__dirname, "../client/build")));
+
+app.get("*", function (req, res) {
   res.sendFile(
     path.join(__dirname, "../client/build/index.html"),
     function (err) {
@@ -29,8 +32,6 @@ app.get("/*", function (req, res) {
     }
   );
 });
-
-app.use(express.json());
 
 app.post("/", (req, res) => {
   const { email } = req.body;
