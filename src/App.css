@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  font-family: "Red Hat Display", sans-serif;
+}
+
+.App {
+  background-color: #000;
+  width: 100vw;
+  height: 100vh;
+}
