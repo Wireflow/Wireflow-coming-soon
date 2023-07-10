@@ -22,23 +22,6 @@ mongoose
   .then(() => console.log("Connected to DB"))
   .catch((err) => console.error("Error connecting to DB", err));
 
-app.use(express.static(path.join(__dirname, "../client/build")));
-
-app.get("/*", function (req, res) {
-  res.sendFile(
-    path.join(__dirname, "../client/build/index.html"),
-    function (err) {
-      if (err) {
-        res.status(500).send(err);
-      }
-    }
-  );
-});
-
-var distDir = __dirname + "/dist/";
-
-app.use(express.static(distDir));
-
 app.post("/", (req, res) => {
   const { email } = req.body;
   const subscriber = new Subscriber({ email });
@@ -51,6 +34,17 @@ app.post("/", (req, res) => {
     .catch((err) => {
       res.status(500).send("Error Subscribing");
     });
+});
+
+app.get("/*", function (req, res) {
+  res.sendFile(
+    path.join(__dirname, "../client/build/index.html"),
+    function (err) {
+      if (err) {
+        res.status(500).send(err);
+      }
+    }
+  );
 });
 
 app.listen(process.env.PORT || 3000, function () {
