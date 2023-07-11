@@ -22,19 +22,24 @@ mongoose
   .then(() => console.log("Connected to DB"))
   .catch((err) => console.error("Error connecting to DB", err));
 
-app.post("/", (req, res) => {
-  const { email } = req.body;
-  const subscriber = new Subscriber({ email });
+app.post(
+  "https://wireflow-coming-soon-f1f1d6a04479.herokuapp.com/",
+  function (req, res) {
+    const { email } = req.body;
+    const subscriber = new Subscriber({ email });
 
-  subscriber
-    .save()
-    .then(() => {
-      res.send("Subscribed Successfully");
-    })
-    .catch((err) => {
-      res.status(500).send("Error Subscribing");
-    });
-});
+    subscriber
+      .save()
+      .then(() => {
+        res.send("Subscribed Successfully");
+      })
+      .catch((err) => {
+        res.status(500).send("Error Subscribing");
+      });
+  }
+);
+
+app.use(express.static(path.join(__dirname, "../client/build")));
 
 app.get("/*", function (req, res) {
   res.sendFile(
@@ -47,10 +52,7 @@ app.get("/*", function (req, res) {
   );
 });
 
-app.listen(process.env.PORT || 3000, function () {
-  console.log(
-    "Express server listening on port %d in %s mode",
-    this.address().port,
-    app.settings.env
-  );
+const port = process.env.PORT || 5000;
+app.listen(port, function () {
+  console.log(`Express server listening on port ${port}`);
 });

@@ -12,11 +12,14 @@ const ComingSoon = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("Submit button clicked");
 
     axios
-      .post("/", { email })
+      .post("https://wireflow-coming-soon-f1f1d6a04479.herokuapp.com/", {
+        email,
+      })
       .then((response) => {
-        console.log(response.data);
+        console.log("Response:", response.data);
         setIsSubmitted(true);
         setError(null);
       })
@@ -24,7 +27,7 @@ const ComingSoon = () => {
         console.error(error);
         setError("An error occurred. Please try again.");
       });
-
+    console.log("Email:", email);
     setEmail("");
   };
 
