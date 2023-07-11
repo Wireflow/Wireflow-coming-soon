@@ -22,26 +22,25 @@ mongoose
   .then(() => console.log("Connected to DB"))
   .catch((err) => console.error("Error connecting to DB", err));
 
-app.post(
-  "https://wireflow-coming-soon-f1f1d6a04479.herokuapp.com/",
-  function (req, res) {
-    const { email } = req.body;
-    const subscriber = new Subscriber({ email });
-
-    subscriber
-      .save()
-      .then(() => {
-        res.send("Subscribed Successfully");
-      })
-      .catch((err) => {
-        res.status(500).send("Error Subscribing");
-      });
-  }
-);
-
+// Serve static files from the client build directory
 app.use(express.static(path.join(__dirname, "../client/build")));
 
-app.get("/*", function (req, res) {
+app.post("/", (req, res) => {
+  const { email } = req.body;
+  const subscriber = new Subscriber({ email });
+
+  subscriber
+    .save()
+    .then(() => {
+      res.send("Subscribed Successfully");
+    })
+    .catch((err) => {
+      res.status(500).send("Error Subscribing");
+    });
+});
+
+// Serve the client's index.html for all other routes
+app.get("*", function (req, res) {
   res.sendFile(
     path.join(__dirname, "../client/build/index.html"),
     function (err) {
@@ -52,7 +51,9 @@ app.get("/*", function (req, res) {
   );
 });
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 app.listen(port, function () {
-  console.log(`Express server listening on port ${port}`);
+  console.log(
+    `Express server listening on port ${port} in ${app.settings.env} mode`
+  );
 });

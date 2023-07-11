@@ -15,7 +15,7 @@ const ComingSoon = () => {
     console.log("Submit button clicked");
 
     axios
-      .post("https://wireflow-coming-soon-f1f1d6a04479.herokuapp.com/", {
+      .post("/", {
         email,
       })
       .then((response) => {
