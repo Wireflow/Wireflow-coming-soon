@@ -4,7 +4,7 @@ import axios from "axios";
 
 import lettermark from "../assets/Lettermark.png";
 import logo from "../assets/logo-icon.png";
-import { BsLinkedin, BsTwitter, BsGithub, BsInstagram } from "react-icons/bs";
+import { BsLinkedin, BsTwitter, BsInstagram } from "react-icons/bs";
 
 const ComingSoon = () => {
   const [email, setEmail] = useState("");
@@ -71,13 +71,25 @@ const ComingSoon = () => {
       <footer>
         <div className="socials">
           <div className="socials-wrapper">
-            <a href="https://twitter.com/wireflowtech">
+            <a
+              href="https://twitter.com/wireflowtech"
+              target="_blank"
+              rel="noreferrer"
+            >
               <BsTwitter size={24} />
             </a>
-            <a href="https://www.instagram.com/wireflowtech/">
+            <a
+              href="https://www.instagram.com/wireflowtech/"
+              target="_blank"
+              rel="noreferrer"
+            >
               <BsInstagram size={24} />
             </a>
-            <a href="https://www.instagram.com/wireflowtech/">
+            <a
+              href="https://www.instagram.com/wireflowtech/"
+              target="_blank"
+              rel="noreferrer"
+            >
               <BsLinkedin size={24} />
             </a>
           </div>
