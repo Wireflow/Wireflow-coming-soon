@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./ComingSoon.css";
 import axios from "axios";
 
 import lettermark from "../assets/Lettermark.png";
@@ -12,7 +13,6 @@ const ComingSoon = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Submit button clicked");
 
     axios
       .post("/", {
@@ -24,10 +24,8 @@ const ComingSoon = () => {
         setError(null);
       })
       .catch((error) => {
-        console.error(error);
-        setError("An error occurred. Please try again.");
+        setError("Invalid email, please try again");
       });
-    console.log("Email:", email);
     setEmail("");
   };
 
@@ -39,7 +37,8 @@ const ComingSoon = () => {
           <img src={logo} alt="" />
         </div>
       </header>
-      <body>
+
+      <div className="content-container">
         <div className="titles">
           <p>COMING SOON</p>
           <h1>DISCOVER A WORLD OF POSSIBILITIES</h1>
@@ -68,14 +67,19 @@ const ComingSoon = () => {
             </>
           )}
         </div>
-      </body>
+      </div>
       <footer>
         <div className="socials">
           <div className="socials-wrapper">
-            <BsTwitter size={24} />
-            <BsInstagram size={24} />
-            <BsLinkedin size={24} />
-            <BsGithub size={24} />
+            <a href="https://twitter.com/wireflowtech">
+              <BsTwitter size={24} />
+            </a>
+            <a href="https://www.instagram.com/wireflowtech/">
+              <BsInstagram size={24} />
+            </a>
+            <a href="https://www.instagram.com/wireflowtech/">
+              <BsLinkedin size={24} />
+            </a>
           </div>
           <p>© Copyrights WIREFLOW | All Rights Reserved</p>
         </div>
